@@ -5,11 +5,11 @@ abstract class TodoRepo {
   Future<List<TodoTask>> getAllTodo();
 
   // add new
-  Future<void> addTodo({TodoTask newTodo});
+  Future<void> addTodo({required TodoTask newTodo});
 
   // update exsiting
-  Future<void> updateTodo({TodoTask updateTodo});
+  Future<void> updateTodo({required TodoTask updateTodo});
 
   // delete
-  Future<void> deleteTodo({TodoTask deleteTodo});
+  Future<void> deleteTodo({required TodoTask deleteTodo});
 }
