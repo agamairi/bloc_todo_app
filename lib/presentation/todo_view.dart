@@ -26,12 +26,20 @@ class TodoView extends StatelessWidget {
                 },
                 child: const Text('Cancel'),
               ),
-              TextButton(
+              ElevatedButton(
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(
+                    Colors.black,
+                  ),
+                ),
                 onPressed: () {
                   todoCubit.addTodo(task.text);
                   Navigator.pop(context);
                 },
-                child: const Text('Add'),
+                child: const Text(
+                  'Add',
+                  style: TextStyle(color: Colors.white),
+                ),
               )
             ],
           );
