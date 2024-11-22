@@ -15,6 +15,7 @@ class TodoView extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
+            title: const Text('Add Todo'),
             content: TextField(
               controller: task,
             ),
@@ -41,7 +42,20 @@ class TodoView extends StatelessWidget {
   Widget build(BuildContext context) {
     final todoCubit = context.read<TodoCubit>();
     return Scaffold(
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: const Text(
+          'ToDo',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.black,
+      ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
         child: const Icon(Icons.add),
         onPressed: () => _showAddTodo(context),
       ),
@@ -51,28 +65,24 @@ class TodoView extends StatelessWidget {
           itemBuilder: (context, index) {
             final todo = todos[index];
             return ListTile(
-              title: Text(todo.desc),
-              trailing: Row(
-                children: [
-                  Checkbox(
-                    value: todo.isComplete,
-                    onChanged: (value) {
-                      todoCubit.toggleComplete(todo);
-                    },
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      todoCubit.deleteTodo(todo);
-                    },
-                    icon: const Icon(
-                      Icons.delete,
-                      color: Colors.red,
-                    ),
-                  ),
-                ],
+              leading: Checkbox(
+                value: todo.isComplete,
+                onChanged: (value) {
+                  todoCubit.toggleComplete(todo);
+                },
+              ),
+              title: Text(
+                todo.desc,
+                style: const TextStyle(color: Colors.white),
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  todoCubit.deleteTodo(todo);
+                },
+                icon: const Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                ),
               ),
             );
           },
