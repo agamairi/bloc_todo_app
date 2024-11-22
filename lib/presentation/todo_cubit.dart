@@ -29,8 +29,13 @@ class TodoCubit extends Cubit<List<TodoTask>> {
 
   Future<void> updateTodo(TodoTask updateTask) async {
     final updateTodo = updateTask.toggleComplete();
-
     await todoRepo.updateTodo(updateTodo: updateTodo);
+    loadTodos();
+  }
+
+  Future<void> toggleComplete(TodoTask todoTask) async {
+    final updatedTodo = todoTask.toggleComplete();
+    await todoRepo.updateTodo(updateTodo: updatedTodo);
 
     loadTodos();
   }
